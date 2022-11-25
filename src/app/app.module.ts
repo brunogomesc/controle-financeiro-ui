@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { TypesService } from './services/types/types.service';
 import { CategoriesService } from './services/categories/categories.service';
-import { ListCategoriesComponent } from './components/Category/list-categories/list-categories.component';
+import { ListCategoriesComponent, DialogRemoveCategoriesComponent } from './components/Category/list-categories/list-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule} from '@angular/material/table'
 import { MatIconModule } from '@angular/material/icon'
@@ -21,13 +21,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { UpdateCategoryComponent } from './components/Category/update-category/update-category.component'
+import { MatDialogModule } from '@angular/material/dialog'
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListCategoriesComponent,
     NewCategoryComponent,
-    UpdateCategoryComponent
+    UpdateCategoryComponent,
+    DialogRemoveCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,13 @@ import { UpdateCategoryComponent } from './components/Category/update-category/u
     MatInputModule,
     MatDividerModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule
   ],
   providers: [
     TypesService,
@@ -52,4 +65,5 @@ import { UpdateCategoryComponent } from './components/Category/update-category/u
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

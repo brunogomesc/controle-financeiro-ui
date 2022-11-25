@@ -4,6 +4,7 @@ import { TypesService } from 'src/app/services/types/types.service';
 import { FormGroup, FormControl } from '@angular/forms'
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-category',
@@ -16,7 +17,7 @@ export class NewCategoryComponent implements OnInit {
 
   types: Type[] = [];
 
-  constructor(private typesServices: TypesService, private categoriesService : CategoriesService, private router : Router) { }
+  constructor(private typesServices: TypesService, private categoriesService : CategoriesService, private router : Router, private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
     this.typesServices.GetAll().subscribe(result => {
@@ -38,6 +39,11 @@ export class NewCategoryComponent implements OnInit {
     const category = this.form.value;
     this.categoriesService.NewCategory(category).subscribe(result => {
       this.router.navigate(['categories/listcategories'])
+      this.snackBar.open(result.message, "", {
+        duration: 2000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top'
+      })
     })
   }
 

@@ -6,6 +6,7 @@ import { Category } from 'src/app/models/Category';
 import { Type } from 'src/app/models/Type';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { TypesService } from 'src/app/services/types/types.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-category',
@@ -23,7 +24,8 @@ export class UpdateCategoryComponent implements OnInit {
   constructor(private router : Router, 
     private route : ActivatedRoute, 
     private typesServices : TypesService,
-    private categoriesServices : CategoriesService) { }
+    private categoriesServices : CategoriesService,
+    private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
     this.categoryId = this.route.snapshot.params['id'];
@@ -54,6 +56,11 @@ export class UpdateCategoryComponent implements OnInit {
     const category = this.form.value;
     this.categoriesServices.UpdateCategory(this.categoryId, category).subscribe(result => {
       this.router.navigate(['categories/listcategories']);
+      this.snackBar.open(result.message, "", {
+        duration: 2000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top'
+      })
     })
   }
 

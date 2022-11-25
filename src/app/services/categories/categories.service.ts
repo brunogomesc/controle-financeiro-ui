@@ -40,4 +40,10 @@ export class CategoriesService {
     const apiUrl = `${this.url}/${categoryId}`;
     return this.http.delete<number>(apiUrl, httpOptions);
   }
+
+  FilterCategories(nameCategory: string): Observable<Category[]> {
+    const apiUrl = `${this.url}/FilterCategories/${nameCategory}`;
+    return this.http.get<Category[]>(apiUrl);
+  }
+
 }
